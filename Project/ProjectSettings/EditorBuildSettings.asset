@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PrimeiroCanvas.unity
     guid: 12045706c30b0c443a3eb79fb0b26800
+  - enabled: 1
+    path: Assets/Scenes/CompleteScreen.unity
+    guid: 2543f89471456e4479d384a3c455adb3
   m_configObjects: {}

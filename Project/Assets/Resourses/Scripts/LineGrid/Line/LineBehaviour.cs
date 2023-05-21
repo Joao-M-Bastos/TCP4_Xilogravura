@@ -18,15 +18,15 @@ public class LineBehaviour : MonoBehaviour
 
     public void UpdateLine(Vector3 position)
     {
-        
+
         if (pointsInGrid == null)
         {
             pointsInGrid = new List<Vector3>();
             SetPoint(position);
             return;
         }
-            
-        if(Vector3.Distance(pointsInGrid.Last(), position) > 0.1f)
+
+        if (Vector3.Distance(pointsInGrid.Last(), position) > 0.1f)
         {
             SetPoint(position);
         }

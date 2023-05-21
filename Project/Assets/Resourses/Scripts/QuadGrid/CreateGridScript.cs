@@ -86,4 +86,12 @@ public class CreateGridScript : MonoBehaviour
             q.ChangeDestruction(b);
         }
     }
+
+    public void DestroyAssets()
+    {
+        if (prefabInScene != null)
+        {
+            Destroy(prefabInScene);
+        }
+    }
 }

@@ -112,4 +112,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeDestroyed: 0
+  destroyParticules: {fileID: 2588082243958346408, guid: 28afd1e78f53da747a6b4f02c4bd9c50, type: 3}
   isColinding: 0

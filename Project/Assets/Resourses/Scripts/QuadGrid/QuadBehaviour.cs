@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuadBehaviour : MonoBehaviour
 {
     [SerializeField]private bool canBeDestroyed;
+    [SerializeField] private ParticleSystem destroyParticules;
 
     [SerializeField] private bool isColinding;
     
@@ -17,6 +18,7 @@ public class QuadBehaviour : MonoBehaviour
     {
         if (canBeDestroyed)
         {
+            GameObject particule = Instantiate(destroyParticules.gameObject, this.transform.position, destroyParticules.gameObject.transform.rotation);
             Destroy(this.gameObject);
         }
     }
@@ -33,7 +35,6 @@ public class QuadBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("a");
         if (other.gameObject.CompareTag("AssetPreFab"))
             this.isColinding = true;
         this.ChangeDestruction(this.canBeDestroyed);
