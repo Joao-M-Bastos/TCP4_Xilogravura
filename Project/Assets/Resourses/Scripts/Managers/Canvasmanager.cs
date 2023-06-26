@@ -10,44 +10,69 @@ public class Canvasmanager : MonoBehaviour
 
     public GameObject[] preFabs;
 
+    public GameObject pfParent;
+    GameObject prefabInScene;
+
+    public GameObject[] preFabsFinais;
+
+    public GameObject pfFinalParent;
+    GameObject prefabFinalInScene;
+
     private void Start()
     {
-        backGrid.InstanciateQuads();
-        foreach(CreateGridScript c in allGrids)
-        {
-            c.ReCreateGrid(null);
-        }
+        ReCreateGrids();
     }
 
-    public void ReCreateGrids(int i)
+    public void PutPreFabsInCanvas()
     {
-        if(i < 0)
-        {
-            foreach (CreateGridScript c in allGrids)
-            {
-                c.ReCreateGrid(null);
-            }
-        }
-        else
-        {
-            for(int j = 0; j < 3; j++)
-            {
-                allGrids[(j * 4) + i].ReCreateGrid(preFabs[i]);
-            }
-        }
+        if (prefabInScene != null)
+            return;
+
+        prefabInScene = Instantiate(preFabs[GoToSceneScript.GetCanvasID()], pfParent.transform);
+
+        prefabFinalInScene = Instantiate(preFabsFinais[1], pfFinalParent.transform);
+
+        SetAllCanvasQuadsDestroy(true);
+        
     }
 
     public void Finalizar()
     {
-        GameObject[] allGridsObjs = new GameObject[12];
-
-        for(int i = 0; i < allGridsObjs.Length; i ++) {
-            allGrids[i].DestroyAssets();
-            allGridsObjs[i] = allGrids[i].gameObject;
-        }
-
-        GridHolder.setGridObjs(allGridsObjs);
-
         GoToSceneScript.GoToScene("CompleteScreen");
+    }
+
+    public void ReCreateGrids()
+    {
+        allGrids[0].ReCreateGrid();
+        allGrids[1].ReCreateGrid();
+        allGrids[2].ReCreateGrid();
+        allGrids[3].ReCreateGrid();
+    }
+
+    public void SetAllCanvasQuadsDestroy(bool value)
+    {
+        allGrids[0].SetAllQuadsDestroy(value);
+        allGrids[1].SetAllQuadsDestroy(value);
+        allGrids[2].SetAllQuadsDestroy(value);
+        allGrids[3].SetAllQuadsDestroy(value);
+    }
+
+    public void DestroyAssets()
+    {
+        if (prefabInScene != null)
+        {
+            Destroy(prefabInScene);
+        }
+    }
+
+    public bool IsAllCanvasIsClean()
+    {
+        if( allGrids[0].IsAllQuadsClean() &&
+            allGrids[1].IsAllQuadsClean() &&
+            allGrids[2].IsAllQuadsClean() &&
+            allGrids[3].IsAllQuadsClean()){
+            return true;
+        }
+        return false;
     }
 }

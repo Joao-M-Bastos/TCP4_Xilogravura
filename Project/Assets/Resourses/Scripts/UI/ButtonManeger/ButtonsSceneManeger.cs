@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonsSceneManeger : MonoBehaviour
 {
-    public static void OnFishtCanvasClick()
+    public void OnFishtCanvasClick()
     {
+        GoToSceneScript.SetCanvasID(0);
         GoToSceneScript.GoToScene("PrimeiroCanvas");
     }
 
-    public static void OnSecoundCanvasClick()
+    public void OnSecoundCanvasClick()
     {
-        GoToSceneScript.GoToScene("SegundoCanvas");
+        GoToSceneScript.SetCanvasID(1);
+        GoToSceneScript.GoToScene("PrimeiroCanvas");
     }
 
-    public static void OnStartMenuClick()
+    public void OnStartMenuClick()
     {
         GoToSceneScript.GoToScene("StarterMenuScene");
-
     }
 }

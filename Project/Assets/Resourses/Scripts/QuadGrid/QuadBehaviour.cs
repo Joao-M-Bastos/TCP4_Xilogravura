@@ -6,12 +6,18 @@ public class QuadBehaviour : MonoBehaviour
 {
     [SerializeField]private bool canBeDestroyed;
     [SerializeField] private ParticleSystem destroyParticules;
+    [SerializeField] private ParticleSystem sinalyzeParticules;
 
     [SerializeField] private bool isColinding;
     
     private void Awake()
     {
         canBeDestroyed = false;
+    }
+
+    public void SinalyzeQuad()
+    {
+        Instantiate(sinalyzeParticules.gameObject, this.transform.position, sinalyzeParticules.gameObject.transform.rotation);
     }
 
     public void TryDestroyQuad()
@@ -33,11 +39,20 @@ public class QuadBehaviour : MonoBehaviour
         this.canBeDestroyed = value;
     }
 
+    public bool GetDestructionType()
+    {
+        return canBeDestroyed;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("AssetPreFab"))
-            this.isColinding = true;
-        this.ChangeDestruction(this.canBeDestroyed);
+            Destroy(this.gameObject);
+        if (other.gameObject.CompareTag("Coifa"))
+            TryDestroyQuad();
+        
+        //this.isColinding = true;
+        //this.ChangeDestruction(this.canBeDestroyed);
     }
 
     private void OnTriggerExit(Collider other)

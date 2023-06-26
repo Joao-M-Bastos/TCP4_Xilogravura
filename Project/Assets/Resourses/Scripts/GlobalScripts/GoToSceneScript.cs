@@ -5,12 +5,21 @@ using UnityEngine.SceneManagement;
 
 public static class GoToSceneScript
 {
-    public static void GoToScene(string sceneName = "", int? sceneID = null)
+    private static int canvasId;
+
+    public static void GoToScene(string sceneName = "")
     {
         if(sceneName != "")
             SceneManager.LoadScene(sceneName);
+    }
 
-        if (sceneID != null)
-            SceneManager.LoadScene((int)sceneID);
+    public static int GetCanvasID()
+    {
+        return canvasId;
+    }
+
+    public static void SetCanvasID(int value)
+    {
+        canvasId = value;
     }
 }

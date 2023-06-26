@@ -10,29 +10,37 @@ public class MouseInputPosition : MonoBehaviour
     Vector3 newMousePos, lastMousePos;
     //float cooldown;
 
+    [SerializeField]ActiveToolManager toolManager;
+
     private void Awake()
     {
         //cooldown = 1;
 
+        quadSize = (quad.GetComponent<MeshRenderer>().bounds.size.x / 1.4f) * ((((float)Screen.width / 750)+((float)Screen.height / 469))/2);
 
-        quadSize = (quad.GetComponent<MeshRenderer>().bounds.size.x / 1.4f) * ((float)Screen.width / 680);
     }
     private void Update()
     {
         //if(cooldown <= 0)
         //{
         //    cooldown = 0.1f;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0)
         {
-            lastMousePos = Input.mousePosition;
+            //lastMousePos = Input.GetTouch(0).position;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.touchCount > 0)
         {
             Clicked();
-            lastMousePos = Input.mousePosition;
+            lastMousePos = Input.GetTouch(0).position;
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            MouseClicked();
+            lastMousePos = Input.mousePosition;
+        }
+         
         //}
         //else
         //{
@@ -40,15 +48,24 @@ public class MouseInputPosition : MonoBehaviour
         //}
     }
 
-    void Clicked()
+    private void MouseClicked()
     {
         newMousePos = Input.mousePosition;
         if (newMousePos != lastMousePos)
         {
-            if(CheckDisctances(newMousePos, lastMousePos, 1.85f))
+            //if(CheckDisctances(newMousePos, lastMousePos, 3f))
+            GenerateRays();
+        }
+    }
+
+    void Clicked()
+    {
+        newMousePos = Input.GetTouch(0).position;
+        if (newMousePos != lastMousePos)
+        {
+            //if(CheckDisctances(newMousePos, lastMousePos, 3f))
                 GenerateRays();
         }
-            
     }
 
     private bool CheckDisctances(Vector3 pos1, Vector3 pos2, float maxDistance)
@@ -63,15 +80,18 @@ public class MouseInputPosition : MonoBehaviour
         Ray ray;
         Vector3 mousePos;
 
-        for (int i = 0; i < 13; i++)
+        for (int i = 0; i < 19; i++)
         {
             RaycastHit hit = new RaycastHit();
 
             //lastMousePos agora é a posição atual
-            mousePos = Input.mousePosition;
+            mousePos = newMousePos;
 
             switch (i)
             {
+                case 0:
+                    PlaceToolInCanvas(mousePos);
+                    break;
                 case 1:
                     mousePos.y += quadSize *2; 
                     break;
@@ -87,7 +107,7 @@ public class MouseInputPosition : MonoBehaviour
                     mousePos.x += quadSize;
                     break;
                 case 5:
-                    mousePos.x -= quadSize * 2;
+                    mousePos.y -= quadSize * 3;
                     break;
                 case 6:
                     mousePos.x -= quadSize;
@@ -96,7 +116,7 @@ public class MouseInputPosition : MonoBehaviour
                     mousePos.x += quadSize;
                     break;
                 case 8:
-                    mousePos.x += quadSize * 2;
+                    mousePos.y += quadSize * 3;
                     break;
                 case 9:
                     mousePos.y -= quadSize;
@@ -112,16 +132,54 @@ public class MouseInputPosition : MonoBehaviour
                 case 12:
                     mousePos.y -= quadSize * 2;
                     break;
+                case 13:
+                    mousePos.y -= quadSize * 2;
+                    mousePos.x += quadSize;
+                    break;
+                case 14:
+                    mousePos.y += quadSize * 2;
+                    mousePos.x += quadSize;
+                    break;
+                case 15:
+                    mousePos.y -= quadSize * 2;
+                    mousePos.x -= quadSize;
+                    break;
+                case 16:
+                    mousePos.y += quadSize * 2;
+                    mousePos.x -= quadSize;
+                    break;
+                case 17:
+                    mousePos.y -= quadSize * 4;
+                    break;
+                case 18:
+                    mousePos.y += quadSize * 4;
+                    break;
             }
 
             ray = Camera.main.ScreenPointToRay(mousePos);
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject.TryGetComponent<QuadBehaviour>(out QuadBehaviour quad))
+                if (hit.collider.gameObject.TryGetComponent(out QuadBehaviour quad))
                 {
                     quad.TryDestroyQuad();
                 }
+            }
+        }
+    }
+
+    private void PlaceToolInCanvas(Vector3 mousePos)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        RaycastHit hit = new RaycastHit();
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject.TryGetComponent(out QuadBehaviour quad)||
+                hit.collider.gameObject.CompareTag("AssetPreFab"))
+            {
+                toolManager.GoToPosition(hit.point);
             }
         }
     }

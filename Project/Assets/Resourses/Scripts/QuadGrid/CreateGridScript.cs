@@ -10,7 +10,7 @@ public class CreateGridScript : MonoBehaviour
     private float mainCameraSize, quadSize;
 
     public GameObject quadParent;
-    GameObject qpInScene, prefabInScene;
+    GameObject qpInScene;
 
     public GameObject quad;
 
@@ -44,39 +44,30 @@ public class CreateGridScript : MonoBehaviour
                 a.transform.SetLocalPositionAndRotation(new Vector3(
                     ((xStartPoint + (quadSize / 2)) + (quadSize * i)),
                     ((yStartPoint - (quadSize / 2)) - (quadSize * j)),
-                    a.transform.position.z),
+                    0),
                     Quaternion.identity);
                 
             }
         }
     }
 
-    public void ReCreateGrid(GameObject prefab)
+    public void ReCreateGrid()
     {
-        if (prefab == null)
-        {
-            Destroy(prefabInScene);
-            qpInScene = Instantiate(quadParent, this.transform);
-            CreateGrid();
-            return;
-        }
+            try
+            {
+                Destroy(qpInScene.gameObject);
+            }
+            catch
+            {
 
-        if (prefabInScene != null)
-        {
-            Destroy(prefabInScene);
-            SetAllQuadsDestroy(false);
-        }
-        else
-        {
-            Destroy(qpInScene.gameObject);
-            qpInScene = Instantiate(quadParent, this.transform);
-            CreateGrid();
-            prefabInScene = Instantiate(prefab, qpInScene.transform);
-            SetAllQuadsDestroy(true);
-        }
+            }
+        
+        qpInScene = Instantiate(quadParent, this.transform);
+        SetAllQuadsDestroy(false);
+        CreateGrid();
     }
 
-    private void SetAllQuadsDestroy(bool b)
+    public void SetAllQuadsDestroy(bool b)
     {
         QuadBehaviour[] allQuads;
         allQuads = qpInScene.GetComponentsInChildren<QuadBehaviour>();
@@ -87,11 +78,25 @@ public class CreateGridScript : MonoBehaviour
         }
     }
 
-    public void DestroyAssets()
+    public bool IsAllQuadsClean()
     {
-        if (prefabInScene != null)
+        QuadBehaviour[] allQuads;
+        allQuads = qpInScene.GetComponentsInChildren<QuadBehaviour>();
+
+        int count = 0;
+
+        foreach (QuadBehaviour q in allQuads)
         {
-            Destroy(prefabInScene);
+            if (q.GetDestructionType())
+            {
+                q.SinalyzeQuad();
+                count++;
+            }
         }
+        if(count > 300)
+            return false;
+
+        return true;
     }
+    
 }
