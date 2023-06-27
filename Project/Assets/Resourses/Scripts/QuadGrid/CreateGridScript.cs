@@ -66,7 +66,7 @@ public class CreateGridScript : MonoBehaviour
         CreateGrid();
     }
 
-    public bool IsAllQuadsClean()
+    public int IsMostQuadsClean()
     {
         QuadBehaviour[] allQuads;
         allQuads = qpInScene.GetComponentsInChildren<QuadBehaviour>();
@@ -77,11 +77,18 @@ public class CreateGridScript : MonoBehaviour
         {
             count++;
         }
+        return count;
+    }
 
-        if(count > 70)
+    public bool IsAllQuadsClean()
+    {
+        QuadBehaviour[] allQuads;
+        allQuads = qpInScene.GetComponentsInChildren<QuadBehaviour>();
+
+        if (allQuads.Length > 0)
             return false;
 
         return true;
     }
-    
+
 }

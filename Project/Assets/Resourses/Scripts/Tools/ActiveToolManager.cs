@@ -6,17 +6,26 @@ public class ActiveToolManager : MonoBehaviour
 {
     [SerializeField] GameObject[] tools;
 
-    [SerializeField] GameObject[] colliders;
+    [SerializeField] GameObject[] coifaColliders;
     public void SelectCoifa()
     {
         tools[0].SetActive(true);
         tools[1].SetActive(false);
+        tools[2].SetActive(false);
+    }
+
+    public void SelectLixa()
+    {
+        tools[0].SetActive(false);
+        tools[1].SetActive(true);
+        tools[2].SetActive(false);
     }
 
     public void SelectRoloTinta()
     {
         tools[0].SetActive(false);
-        tools[1].SetActive(true);
+        tools[1].SetActive(false);
+        tools[2].SetActive(true);
     }
 
     public void NoToolSelected()
@@ -27,14 +36,14 @@ public class ActiveToolManager : MonoBehaviour
 
     public void SetCollidersOff()
     {
-        foreach(GameObject go in colliders)
+        foreach(GameObject go in coifaColliders)
         {
             go.SetActive(false);
         }
     }
     public void SetCollidersOn()
     {
-        foreach (GameObject go in colliders)
+        foreach (GameObject go in coifaColliders)
         {
             go.SetActive(true);
         }

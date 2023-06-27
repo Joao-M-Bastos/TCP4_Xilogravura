@@ -16,6 +16,8 @@ public class Canvasmanager : MonoBehaviour
     public GameObject pfFinalParent;
     GameObject prefabFinalInScene;
 
+    public int numOfTotalQuads;
+
     private void Start()
     {
         ReCreateGrids();
@@ -53,12 +55,30 @@ public class Canvasmanager : MonoBehaviour
         }
     }
 
+    public bool IsMostCanvasIsClean()
+    {
+        if (numOfTotalQuads == 0)
+        {
+            numOfTotalQuads = allGrids[0].IsMostQuadsClean() + allGrids[1].IsMostQuadsClean() + allGrids[2].IsMostQuadsClean() + allGrids[3].IsMostQuadsClean();
+        }
+
+        if ( allGrids[0].IsMostQuadsClean() +
+            allGrids[1].IsMostQuadsClean() +
+            allGrids[2].IsMostQuadsClean() +
+            allGrids[3].IsMostQuadsClean() < numOfTotalQuads*0.07f){
+            return true;
+        }
+        return false;
+    }
+
     public bool IsAllCanvasIsClean()
     {
-        if( allGrids[0].IsAllQuadsClean() &&
+        
+        if (allGrids[0].IsAllQuadsClean() &&
             allGrids[1].IsAllQuadsClean() &&
             allGrids[2].IsAllQuadsClean() &&
-            allGrids[3].IsAllQuadsClean()){
+            allGrids[3].IsAllQuadsClean())
+        {
             return true;
         }
         return false;

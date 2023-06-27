@@ -29,7 +29,7 @@ public class QuadBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("AssetPreFab"))
+        if (other.gameObject.CompareTag("AssetPreFab") || other.gameObject.CompareTag("Lixa"))
             Destroy(this.gameObject);
 
         if (other.gameObject.CompareTag("Coifa"))

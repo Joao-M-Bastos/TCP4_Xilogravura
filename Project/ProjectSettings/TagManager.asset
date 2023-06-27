@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AssetPreFab
   - Coifa
+  - Lixa
   layers:
   - Default
   - TransparentFX

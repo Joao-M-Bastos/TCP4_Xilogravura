@@ -1088,6 +1088,7 @@ MonoBehaviour:
   - {fileID: 5472704538713711763, guid: ace3e7d577ef41e45be82311a820487d, type: 3}
   - {fileID: 1779634723737260309, guid: 46cdc9fcc3b99ae44b91662c976e5d93, type: 3}
   pfFinalParent: {fileID: 242217108}
+  numOfTotalQuads: 0
 --- !u!1 &1161961027
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,10 +2642,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 963194228}
     m_Modifications:
-    - target: {fileID: 1050904833965390257, guid: c2738241fad15a34088c074b9f32471b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4797968345365027876, guid: c2738241fad15a34088c074b9f32471b, type: 3}
       propertyPath: m_Name
       value: HandTools
@@ -2652,14 +2649,6 @@ PrefabInstance:
     - target: {fileID: 5510658726039418026, guid: c2738241fad15a34088c074b9f32471b, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510658726039418026, guid: c2738241fad15a34088c074b9f32471b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510658726039418026, guid: c2738241fad15a34088c074b9f32471b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5510658726039418026, guid: c2738241fad15a34088c074b9f32471b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2699,10 +2688,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5510658726039418026, guid: c2738241fad15a34088c074b9f32471b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7034669310844113379, guid: c2738241fad15a34088c074b9f32471b, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

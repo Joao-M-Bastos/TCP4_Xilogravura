@@ -34,15 +34,37 @@ public class UIManager : MonoBehaviour
         toolmanager.SelectCoifa();
         canvasmanager.PutPreFabsInCanvas();
 
-        StartCoroutine(CanGoToPintar());
+        StartCoroutine(TryGoToLixar());
     }
 
-    private IEnumerator CanGoToPintar()
+    private IEnumerator TryGoToLixar()
+    {
+        yield return new WaitForSeconds(2);
+        if (!canvasmanager.IsMostCanvasIsClean())
+        {
+            StartCoroutine(TryGoToLixar());
+        }
+        else
+        {
+            Lixar();
+        }
+    }
+
+
+    public void Lixar()
+    {
+        toolmanager.SelectLixa();
+        SetActivation(1);
+
+        TryGoToPintar();
+    }
+
+    private IEnumerator TryGoToPintar()
     {
         yield return new WaitForSeconds(2);
         if (!canvasmanager.IsAllCanvasIsClean())
         {
-            StartCoroutine(CanGoToPintar());
+            StartCoroutine(TryGoToPintar());
         }
         else
         {
