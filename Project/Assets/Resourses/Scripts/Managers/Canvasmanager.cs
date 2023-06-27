@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Canvasmanager : MonoBehaviour
 {
-    public CreateGridNonDestroy backGrid;
-
     public CreateGridScript[] allGrids;
 
     public GameObject[] preFabs;
@@ -31,8 +29,6 @@ public class Canvasmanager : MonoBehaviour
         prefabInScene = Instantiate(preFabs[GoToSceneScript.GetCanvasID()], pfParent.transform);
 
         prefabFinalInScene = Instantiate(preFabsFinais[1], pfFinalParent.transform);
-
-        SetAllCanvasQuadsDestroy(true);
         
     }
 
@@ -47,14 +43,6 @@ public class Canvasmanager : MonoBehaviour
         allGrids[1].ReCreateGrid();
         allGrids[2].ReCreateGrid();
         allGrids[3].ReCreateGrid();
-    }
-
-    public void SetAllCanvasQuadsDestroy(bool value)
-    {
-        allGrids[0].SetAllQuadsDestroy(value);
-        allGrids[1].SetAllQuadsDestroy(value);
-        allGrids[2].SetAllQuadsDestroy(value);
-        allGrids[3].SetAllQuadsDestroy(value);
     }
 
     public void DestroyAssets()
@@ -74,5 +62,13 @@ public class Canvasmanager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void CleanWhatsLeft()
+    {
+        allGrids[0].gameObject.SetActive(false);
+        allGrids[1].gameObject.SetActive(false);
+        allGrids[2].gameObject.SetActive(false);
+        allGrids[3].gameObject.SetActive(false);
     }
 }

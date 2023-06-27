@@ -63,19 +63,7 @@ public class CreateGridScript : MonoBehaviour
             }
         
         qpInScene = Instantiate(quadParent, this.transform);
-        SetAllQuadsDestroy(false);
         CreateGrid();
-    }
-
-    public void SetAllQuadsDestroy(bool b)
-    {
-        QuadBehaviour[] allQuads;
-        allQuads = qpInScene.GetComponentsInChildren<QuadBehaviour>();
-
-        foreach(QuadBehaviour q in allQuads)
-        {
-            q.ChangeDestruction(b);
-        }
     }
 
     public bool IsAllQuadsClean()
@@ -87,13 +75,10 @@ public class CreateGridScript : MonoBehaviour
 
         foreach (QuadBehaviour q in allQuads)
         {
-            if (q.GetDestructionType())
-            {
-                q.SinalyzeQuad();
-                count++;
-            }
+            count++;
         }
-        if(count > 300)
+
+        if(count > 70)
             return false;
 
         return true;

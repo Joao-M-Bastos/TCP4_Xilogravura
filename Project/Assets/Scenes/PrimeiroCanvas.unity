@@ -147,7 +147,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20596464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.9}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &242217108
@@ -533,7 +533,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c8c5a1285a76ff4b9d1f159199357fa, type: 2}
+  - {fileID: 2100000, guid: 5d31d57d99942154391aed34382fdf6e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1075,15 +1075,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9641e2f8d9a09f34c99db4bdce8f956d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backGrid: {fileID: 0}
   allGrids:
   - {fileID: 1939589342}
   - {fileID: 2097299396}
   - {fileID: 726354121}
   - {fileID: 305239905}
   preFabs:
-  - {fileID: 1779634723737260309, guid: 2e9bfa4b78e98f142a97052d74a67a15, type: 3}
   - {fileID: 9210285526842681070, guid: 4ede7445b573c5f4c9750ede42180dd2, type: 3}
+  - {fileID: 1779634723737260309, guid: 2e9bfa4b78e98f142a97052d74a67a15, type: 3}
   pfParent: {fileID: 20596464}
   preFabsFinais:
   - {fileID: 5472704538713711763, guid: ace3e7d577ef41e45be82311a820487d, type: 3}

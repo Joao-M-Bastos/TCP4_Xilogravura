@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d31d57d99942154391aed34382fdf6e, type: 2}
+  - {fileID: 2100000, guid: 0a6d0225032355a44a622c23653469b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,10 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea465f1fc150c94bb48ffc1f1f7bdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeDestroyed: 0
   destroyParticules: {fileID: 2588082243958346408, guid: 28afd1e78f53da747a6b4f02c4bd9c50, type: 3}
   sinalyzeParticules: {fileID: 2588082243958346408, guid: 19a05c2ed981d1947a531505801e2eca, type: 3}
-  isColinding: 0
 --- !u!54 &9121066229371655245
 Rigidbody:
   m_ObjectHideFlags: 0

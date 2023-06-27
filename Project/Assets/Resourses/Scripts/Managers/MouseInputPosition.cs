@@ -21,13 +21,6 @@ public class MouseInputPosition : MonoBehaviour
     }
     private void Update()
     {
-        //if(cooldown <= 0)
-        //{
-        //    cooldown = 0.1f;
-        if (Input.touchCount > 0)
-        {
-            //lastMousePos = Input.GetTouch(0).position;
-        }
 
         if (Input.touchCount > 0)
         {
@@ -61,10 +54,15 @@ public class MouseInputPosition : MonoBehaviour
     void Clicked()
     {
         newMousePos = Input.GetTouch(0).position;
+
+        PlaceToolInCanvas(newMousePos);
+
+        toolManager.SetCollidersOff();
+
         if (newMousePos != lastMousePos)
         {
-            //if(CheckDisctances(newMousePos, lastMousePos, 3f))
-                GenerateRays();
+            //if(CheckDisctances(newMousePos, lastMousePos, 5f))
+                toolManager.SetCollidersOn();
         }
     }
 

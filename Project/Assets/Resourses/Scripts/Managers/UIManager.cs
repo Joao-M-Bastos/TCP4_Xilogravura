@@ -53,14 +53,14 @@ public class UIManager : MonoBehaviour
     public void Pintar()
     {
         toolmanager.SelectRoloTinta();
+        canvasmanager.CleanWhatsLeft();
         SetActivation(1);
+
+        Finalizar();
     }
 
-    public void ButtonFinalizar_Click()
+    public void Finalizar()
     {
-        if (!canvasmanager.IsAllCanvasIsClean())
-            return;
-
         SetActivation(3);
 
         cameraAnimator.SetTrigger("Final");
