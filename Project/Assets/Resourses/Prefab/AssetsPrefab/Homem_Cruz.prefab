@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 7350572782253497164}
   - component: {fileID: 7248371570444502076}
   - component: {fileID: 3163154094037878592}
-  - component: {fileID: 7677663183048383984}
   m_Layer: 0
   m_Name: Homem_Cruz 1 (1)
   m_TagString: Untagged
@@ -209,20 +208,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3139649044481992609, guid: aae6395fdb6cef142b41603e2a7fd46c, type: 3}
---- !u!114 &7677663183048383984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139945263003450518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 504eb59e0ffbc6d468332fa9bd3036a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inkMaterial: {fileID: 0}
-  woodMaterial: {fileID: 0}
 --- !u!1 &257609431611064869
 GameObject:
   m_ObjectHideFlags: 0
