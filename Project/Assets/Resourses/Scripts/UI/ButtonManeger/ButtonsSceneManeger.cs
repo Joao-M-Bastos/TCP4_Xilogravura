@@ -5,20 +5,58 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsSceneManeger : MonoBehaviour
 {
-    public void OnFishtCanvasClick()
+    public GameObject[] canvas;
+
+    private bool cameFromSelecao;
+
+    private void Start()
     {
-        GoToSceneScript.SetCanvasID(0);
-        GoToSceneScript.GoToScene("PrimeiroCanvas");
+        if (GoToSceneScript.GetGoToSelecao())
+        {
+            OnPlayClick();
+        }
+    }
+    public void SetActivation(int i)
+    {
+        for (int j = 0; j < canvas.Length; j++)
+        {
+            if (j == i)
+                canvas[j].SetActive(true);
+            else
+                canvas[j].SetActive(false);
+        }
     }
 
-    public void OnSecoundCanvasClick()
+    public void OnPlayClick()
     {
-        GoToSceneScript.SetCanvasID(1);
-        GoToSceneScript.GoToScene("PrimeiroCanvas");
+        SetActivation(1);
     }
 
-    public void OnStartMenuClick()
+    public void OnOptionsPrincipalClick()
     {
-        GoToSceneScript.GoToScene("StarterMenuScene");
+        SetActivation(2);
+    }
+
+    public void OnOptionsSelecaoClick()
+    {
+        cameFromSelecao = true;
+        SetActivation(2);
+    }
+
+    public void OnCreditosClick()
+    {
+        SetActivation(3);
+    }
+
+    public void OnCloseClick()
+    {
+        if (cameFromSelecao)
+        {
+            SetActivation(1);
+            cameFromSelecao = false;
+            return;
+        }
+
+        SetActivation(0);
     }
 }

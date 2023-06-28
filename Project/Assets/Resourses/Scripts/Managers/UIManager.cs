@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]  Animator cameraAnimator;
 
+    [SerializeField] GameObject canvasOptions;
+
     private void Awake()
     {
         Talhando();
@@ -75,7 +77,7 @@ public class UIManager : MonoBehaviour
     public void Pintar()
     {
         toolmanager.SelectRoloTinta();
-        SetActivation(1);
+        SetActivation(2);
 
         StartCoroutine(TryGoToFinalize());
     }
@@ -96,8 +98,33 @@ public class UIManager : MonoBehaviour
     public void Finalizar()
     {
         SetActivation(3);
-
+        canvasOptions.SetActive(false);
         cameraAnimator.SetTrigger("Final");
     }
 
+    public void OnConfigClick()
+    {
+        canvasOptions.SetActive(true);
+    }
+
+    public void OnConfigClose()
+    {
+        canvasOptions.SetActive(false);
+    }
+
+    public void OnMenuClick()
+    {
+        GoToSceneScript.GoToScene("Menu");
+    }
+
+    public void OnSelecaoClick()
+    {
+        GoToSceneScript.SetGoToSelecao();
+        GoToSceneScript.GoToScene("Menu");
+    }
+
+    public void OnResetLevel()
+    {
+        GoToSceneScript.GoToScene("PrimeiroCanvas");
+    }
 }
