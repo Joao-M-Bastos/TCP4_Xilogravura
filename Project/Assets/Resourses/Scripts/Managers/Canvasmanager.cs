@@ -30,7 +30,7 @@ public class Canvasmanager : MonoBehaviour
 
         prefabInScene = Instantiate(preFabs[GoToSceneScript.GetCanvasID()], pfParent.transform);
 
-        prefabFinalInScene = Instantiate(preFabsFinais[1], pfFinalParent.transform);
+        prefabFinalInScene = Instantiate(preFabsFinais[GoToSceneScript.GetCanvasID()], pfFinalParent.transform);
         
     }
 
@@ -65,7 +65,7 @@ public class Canvasmanager : MonoBehaviour
         if ( allGrids[0].IsMostQuadsClean() +
             allGrids[1].IsMostQuadsClean() +
             allGrids[2].IsMostQuadsClean() +
-            allGrids[3].IsMostQuadsClean() < numOfTotalQuads*0.07f){
+            allGrids[3].IsMostQuadsClean() < numOfTotalQuads*0.03f){
             return true;
         }
         return false;
@@ -90,5 +90,26 @@ public class Canvasmanager : MonoBehaviour
         allGrids[1].gameObject.SetActive(false);
         allGrids[2].gameObject.SetActive(false);
         allGrids[3].gameObject.SetActive(false);
+    }
+
+    public bool IsAllAssetsPainted()
+    {
+        if(GoToSceneScript.GetCanvasID() == 0)
+        {
+            if (prefabInScene.GetComponent<AssetPieceBehaviour>().IsPainted)
+            {
+                return true;
+            }
+            return false;
+        }
+        AssetPieceBehaviour[] listOfAssets = prefabInScene.GetComponentsInChildren<AssetPieceBehaviour>();
+        Debug.Log(listOfAssets.Length);
+
+        foreach (AssetPieceBehaviour a in listOfAssets)
+        {
+            if (!a.IsPainted)
+                return false;
+        }
+        return true;
     }
 }

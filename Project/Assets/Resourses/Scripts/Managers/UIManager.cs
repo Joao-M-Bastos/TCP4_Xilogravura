@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
         toolmanager.SelectLixa();
         SetActivation(1);
 
-        TryGoToPintar();
+        StartCoroutine(TryGoToPintar());
     }
 
     private IEnumerator TryGoToPintar()
@@ -75,10 +75,22 @@ public class UIManager : MonoBehaviour
     public void Pintar()
     {
         toolmanager.SelectRoloTinta();
-        canvasmanager.CleanWhatsLeft();
         SetActivation(1);
 
-        Finalizar();
+        StartCoroutine(TryGoToFinalize());
+    }
+
+    private IEnumerator TryGoToFinalize()
+    {
+        yield return new WaitForSeconds(2);
+        if (!canvasmanager.IsAllAssetsPainted())
+        {
+            StartCoroutine(TryGoToFinalize());
+        }
+        else
+        {
+            Finalizar();
+        }
     }
 
     public void Finalizar()

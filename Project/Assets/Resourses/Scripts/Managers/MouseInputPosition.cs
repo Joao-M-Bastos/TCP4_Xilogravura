@@ -57,13 +57,13 @@ public class MouseInputPosition : MonoBehaviour
 
         PlaceToolInCanvas(newMousePos);
 
-        toolManager.SetCollidersOff();
+        //toolManager.SetCollidersOff();
 
-        if (newMousePos != lastMousePos)
-        {
+        //if (newMousePos != lastMousePos)
+        //{
             //if(CheckDisctances(newMousePos, lastMousePos, 5f))
                 toolManager.SetCollidersOn();
-        }
+        //}
     }
 
     private bool CheckDisctances(Vector3 pos1, Vector3 pos2, float maxDistance)
@@ -174,8 +174,7 @@ public class MouseInputPosition : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.gameObject.TryGetComponent(out QuadBehaviour quad)||
-                hit.collider.gameObject.CompareTag("AssetPreFab"))
+            if (!hit.collider.gameObject.CompareTag("Canvas"))
             {
                 toolManager.GoToPosition(hit.point);
             }
